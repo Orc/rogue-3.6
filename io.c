@@ -8,6 +8,8 @@
 #include <ctype.h>
 #include "rogue.h"
 
+#include <stdarg.h>
+
 /*
  * msg:
  *	Display a message at the top of the screen.
@@ -17,10 +19,10 @@ static char msgbuf[BUFSIZ];
 static int newpos = 0;
 
 /*VARARGS1*/
-msg(fmt, args)
-char *fmt;
-int args;
+msg(char *fmt, ...)
 {
+    va_list ptr;
+
     /*
      * if the string is "", just clear the line
      */
@@ -34,18 +36,21 @@ int args;
     /*
      * otherwise add to the message and flush it out
      */
-    doadd(fmt, &args);
+    va_start(ptr, fmt);
+    doadd(fmt, ptr);
+    va_end(ptr);
     endmsg();
 }
 
 /*
  * add things to the current message
  */
-addmsg(fmt, args)
-char *fmt;
-int args;
+addmsg(char *fmt, ...)
 {
-    doadd(fmt, &args);
+    va_list ptr;
+    va_start(ptr, fmt);
+    doadd(fmt, ptr);
+    va_end(ptr);
 }
 
 /*
@@ -71,18 +76,9 @@ endmsg()
 
 doadd(fmt, args)
 char *fmt;
-int **args;
+va_list args;
 {
-    static FILE junk;
-
-    /*
-     * Do the printf into buf
-     */
-    junk._flag = _IOWRT + _IOSTRG;
-    junk._ptr = &msgbuf[newpos];
-    junk._cnt = 32767;
-    _doprnt(fmt, args, &junk);
-    putc('\0', &junk);
+    vsnprintf(msgbuf+newpos, sizeof(msgbuf)-newpos, fmt, args);
     newpos = strlen(msgbuf);
 }
 
