@@ -604,7 +604,7 @@ register char *mname;
 }
 
 /*
- * disappear a monster from the screen
+ * remove a monster from the screen
  */
 disappear(mp, item)
 register coord *mp;

@@ -215,7 +215,7 @@ genocide()
 	mp = (struct thing *) ldata(ip);
 	nip = next(ip);
 	if (mp->t_type == c)
-	    remove(&mp->t_pos, ip);
+	    disappear(&mp->t_pos, ip);
     }
     for (i = 0; i < 26; i++)
 	if (lvl_mons[i] == c)
