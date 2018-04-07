@@ -17,6 +17,8 @@
 static int num_checks;		/* times we've gone over in checkout() */
 #endif
 
+int quit();
+
 main(argc, argv, envp)
 char **argv;
 char **envp;
@@ -27,7 +29,7 @@ char **envp;
     register struct object *obj;
     struct passwd *getpwuid();
     char *getpass(), *crypt();
-    int quit(), lowtime;
+    int lowtime;
     long now;
 
     /*
@@ -305,6 +307,7 @@ playit()
 {
     register char *opts;
 
+#if 0
     /*
      * set up defaults for slow terminals
      */
@@ -314,6 +317,7 @@ playit()
 	terse = TRUE;
 	jump = TRUE;
     }
+#endif
 
     /*
      * parse environment declaration of options

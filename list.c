@@ -7,6 +7,8 @@
 #include <curses.h>
 #include "rogue.h"
 
+char * new(int);
+
 /*
  * detach:
  *	Takes an item out of whatever linked list it might be in
