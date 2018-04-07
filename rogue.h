@@ -50,7 +50,7 @@
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define on(thing, flag) (((thing).t_flags & flag) != 0)
 #define off(thing, flag) (((thing).t_flags & flag) == 0)
-#define CTRL(ch) ('ch' & 037)
+#define CTRL(ch) (ch & 037)
 #define ALLOC(x) malloc((unsigned int) x)
 #define FREE(x) cfree((char *) x)
 #define	EQSTR(a, b, c)	(strncmp(a, b, c) == 0)
@@ -475,9 +475,11 @@ coord delta;				/* Change indicated to get_dir() */
 struct linked_list *find_mons(), *find_obj(), *get_item(), *new_item();
 struct linked_list *new_thing(), *wake_monster();
 
+/*
 char *malloc(), *getenv(), *unctrl(), *tr_name(), *new(), *sprintf();
-char *vowelstr(), *inv_name(), *strcpy(), *strcat(), *sbrk(), *brk();
-char *ctime(), *num(), *ring_num();
+*/
+char *vowelstr(), *inv_name() /*, *strcpy(), *strcat(), *sbrk(), *brk()*/;
+char /* *ctime(), */ *num(), *ring_num();
 
 struct room *roomin();
 

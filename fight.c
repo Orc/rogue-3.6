@@ -206,7 +206,7 @@ register struct thing *mp;
 			purse = 0;
 		    if (purse != lastpurse)
 			msg("Your purse feels lighter");
-		    remove(&mp->t_pos, find_mons(mp->t_pos.y, mp->t_pos.x));
+		    disappear(&mp->t_pos, find_mons(mp->t_pos.y, mp->t_pos.x));
 		}
 		when 'N':
 		{
@@ -231,7 +231,7 @@ register struct thing *mp;
 			register struct object *obj;
 
 			obj = (struct object *) ldata(steal);
-			remove(&mp->t_pos, find_mons(mp->t_pos.y, mp->t_pos.x));
+			disappear(&mp->t_pos, find_mons(mp->t_pos.y, mp->t_pos.x));
 			if (obj->o_count > 1 && obj->o_group == 0)
 			{
 			    register int oc;
@@ -604,9 +604,9 @@ register char *mname;
 }
 
 /*
- * remove a monster from the screen
+ * disappear a monster from the screen
  */
-remove(mp, item)
+disappear(mp, item)
 register coord *mp;
 register struct linked_list *item;
 {
@@ -707,7 +707,7 @@ bool pr;
     /*
      * Get rid of the monster.
      */
-    remove(&tp->t_pos, item);
+    disappear(&tp->t_pos, item);
     while (pitem != NULL)
     {
 	register struct object *obj;

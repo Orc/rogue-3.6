@@ -121,6 +121,7 @@ readchar()
     return c;
 }
 
+#if 0
 /*
  * unctrl:
  *	Print a readable version of a certain character
@@ -134,6 +135,7 @@ char ch;
 
     return _unctrl[ch&0177];
 }
+#endif
 
 /*
  * status:

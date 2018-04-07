@@ -169,8 +169,8 @@ command()
 		    else
 			after = FALSE;
 		when 'v' : msg("Rogue version %s. (mctesq was here)", release);
-		when CTRL(L) : after = FALSE; clearok(curscr,TRUE);draw(curscr);
-		when CTRL(R) : after = FALSE; msg(huh);
+		when CTRL('L') : after = FALSE; clearok(curscr,TRUE);draw(curscr);
+		when CTRL('R') : after = FALSE; msg(huh);
 		when 'S' : 
 		    after = FALSE;
 		    if (save_game())
@@ -182,7 +182,7 @@ command()
 			exit(0);
 		    }
 		when ' ' : ;			/* Rest command */
-		when CTRL(P) :
+		when CTRL('P') :
 		    after = FALSE;
 		    if (wizard)
 		    {
@@ -210,24 +210,24 @@ command()
 		    {
 			when '@' : msg("@ %d,%d", hero.y, hero.x);
 			when 'C' : create_obj();
-			when CTRL(I) : inventory(lvl_obj, 0);
-			when CTRL(W) : whatis();
-			when CTRL(D) : level++; new_level();
-			when CTRL(U) : level--; new_level();
-			when CTRL(F) : show_win(stdscr, "--More (level map)--");
-			when CTRL(X) : show_win(mw, "--More (monsters)--");
-			when CTRL(T) : teleport();
-			when CTRL(E) : msg("food left: %d", food_left);
-			when CTRL(A) : msg("%d things in your pack", inpack);
-			when CTRL(C) : add_pass();
-			when CTRL(N) :
+			when CTRL('I') : inventory(lvl_obj, 0);
+			when CTRL('W') : whatis();
+			when CTRL('D') : level++; new_level();
+			when CTRL('U') : level--; new_level();
+			when CTRL('F') : show_win(stdscr, "--More (level map)--");
+			when CTRL('X') : show_win(mw, "--More (monsters)--");
+			when CTRL('T') : teleport();
+			when CTRL('E') : msg("food left: %d", food_left);
+			when CTRL('A') : msg("%d things in your pack", inpack);
+			when CTRL('C') : add_pass();
+			when CTRL('N') :
 			{
 			    register struct linked_list *item;
 
 			    if ((item = get_item("charge", STICK)) != NULL)
 				((struct object *) ldata(item))->o_charges = 10000;
 			}
-			when CTRL(H) :
+			when CTRL('H') :
 			{
 			    register int i;
 			    register struct linked_list *item;
