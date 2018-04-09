@@ -64,7 +64,8 @@ register char monst;
     killer = killname(monst);
     mvaddstr(17, 28-((strlen(killer)+1)/2), killer);
     mvaddstr(16, 33, vowelstr(killer));
-    mvaddstr(18, 28, sprintf(prbuf, "%2d", lt->tm_year));
+    sprintf(prbuf, "%4d", 1900+lt->tm_year);
+    mvaddstr(18, 26, prbuf);
     move(LINES-1, 0);
     draw(stdscr);
     score(purse, 0, monst);
@@ -126,9 +127,12 @@ char monst;
     signal(SIGINT, SIG_DFL);
     if (flags != -1)
     {
+	int c;
+
 	printf("[Press return to continue]");
 	fflush(stdout);
-	gets(prbuf);
+	while ( (c=getchar()) != '\n' && c != EOF )
+	    ;
     }
     if (wizard)
 	if (strcmp(prbuf, "names") == 0)

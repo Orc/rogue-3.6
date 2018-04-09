@@ -265,7 +265,7 @@
  * Help list
  */
 
-struct h_list {
+extern struct h_list {
     char h_ch;
     char *h_desc;
 } helpstr[];
@@ -496,7 +496,5 @@ int tstp(), unconfuse(), unsee(), rollwand(), stomach(), sight();
 #ifdef CHECKTIME
 int checkout();
 #endif
-
-long lseek();
 
 struct trap *trap_at();

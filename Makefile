@@ -1,4 +1,4 @@
-CFLAGS=-Wno-everything
+CFLAGS= -g -fwritable-strings
 OBJS= \
 armor.o chase.o command.o daemon.o daemons.o fight.o init.o \
 io.o list.o main.o misc.o monsters.o move.o new_level.o \
@@ -6,7 +6,10 @@ options.o pack.o passages.o potions.o rings.o rip.o rooms.o save.o \
 scrolls.o sticks.o things.o vers.o weapons.o wizard.o tty.o
 
 rogue: $(OBJS)
-	cc $(CFLAGS) -o rogue $(OBJS) -lcurses -ltermcap
+	cc $(CFLAGS) -o rogue $(OBJS) -lcurses -ltermcap -lcrypt
+
+clean:
+	rm -f $(OBJS)
 
 armor.o: armor.c mach_dep.h rogue.h
 chase.o: chase.c mach_dep.h rogue.h
