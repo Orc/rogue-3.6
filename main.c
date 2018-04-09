@@ -13,6 +13,8 @@
 #include "mach_dep.h"
 #include "rogue.h"
 
+#include <termios.h>
+
 #ifdef CHECKTIME
 static int num_checks;		/* times we've gone over in checkout() */
 #endif
@@ -110,6 +112,7 @@ char **envp;
     init_stones();			/* Set up stone settings of rings */
     init_materials();			/* Set up materials of wands */
     initscr();				/* Start up cursor package */
+    init_tty();				/* Set up tty attributes */
     setup();
     /*
      * Set up windows
@@ -307,17 +310,15 @@ playit()
 {
     register char *opts;
 
-#if 0
     /*
      * set up defaults for slow terminals
      */
 
-    if (_tty.sg_ospeed < B1200)
+    if (tty_speed < B1200)
     {
 	terse = TRUE;
 	jump = TRUE;
     }
-#endif
 
     /*
      * parse environment declaration of options

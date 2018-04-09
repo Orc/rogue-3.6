@@ -13,7 +13,7 @@
 
 typedef struct stat STAT;
 
-extern char *sys_errlist[], version[], encstr[];
+extern char version[], encstr[];
 extern bool _endwin;
 extern int errno;
 
@@ -97,7 +97,6 @@ register FILE *savef;
     fstat(fileno(savef), &sbuf);
     fwrite("junk", 1, 5, savef);
     fseek(savef, 0L, 0);
-    _endwin = TRUE;
     encwrite(version, sbrk(0) - version, savef);
     fclose(savef);
 }
@@ -167,18 +166,17 @@ char **envp;
 	}
 
     environ = envp;
-    if (!My_term && isatty(2))
+    if (isatty(2))
     {
 	register char	*sp;
 
-	_tty_ch = 2;
 	gettmode();
 	if ((sp = getenv("TERM")) == NULL)
-	    sp = Def_term;
+	    sp = "dumb";
 	setterm(sp);
     }
     else
-	setterm(Def_term);
+	setterm("dumb");
     strcpy(file_name, file);
     setup();
     clearok(curscr, TRUE);

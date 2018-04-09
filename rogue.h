@@ -53,6 +53,7 @@
 #define CTRL(ch) (ch & 037)
 #define ALLOC(x) malloc((unsigned int) x)
 #define FREE(x) cfree((char *) x)
+#define cfree(x) ((x) ? (free(x),1) : 1)
 #define	EQSTR(a, b, c)	(strncmp(a, b, c) == 0)
 #define GOLDCALC (rnd(50 + 10 * level) + 2)
 #define ISRING(h,r) (cur_ring[h] != NULL && cur_ring[h]->o_which == r)
@@ -471,6 +472,10 @@ bool in_shell;				/* True if executing a shell */
 
 coord oldpos;				/* Position before last look() call */
 coord delta;				/* Change indicated to get_dir() */
+
+char tty_erase;				/* tty erase: set in tty.c */
+char tty_intr;				/* tty kill: set in tty.c */
+int  tty_speed;				/* tty ospeed: set in tty.c */
 
 struct linked_list *find_mons(), *find_obj(), *get_item(), *new_item();
 struct linked_list *new_thing(), *wake_monster();
