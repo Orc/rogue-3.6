@@ -125,10 +125,10 @@ char **envp;
     /*
      * Start up daemons and fuses
      */
-    daemon(doctor, 0, AFTER);
+    startdaemon(doctor, 0, AFTER);
     fuse(swander, 0, WANDERTIME, AFTER);
-    daemon(stomach, 0, AFTER);
-    daemon(runners, 0, AFTER);
+    startdaemon(stomach, 0, AFTER);
+    startdaemon(runners, 0, AFTER);
     /*
      * Give the rogue his weaponry.  First a mace.
      */

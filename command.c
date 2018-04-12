@@ -591,7 +591,6 @@ call()
     register struct linked_list *item;
     register char **guess, *elsewise;
     register bool *know;
-    char *malloc();
 
     item = get_item("call", CALLABLE);
     /*

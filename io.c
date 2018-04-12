@@ -111,13 +111,17 @@ readchar()
 {
     char c;
 
+#if HAVE_WGETCH
+    return wgetch(cw);
+#else
     fflush(stdout);
     while (read(0, &c, 1) < 0)
 	continue;
     return c;
+#endif
 }
 
-#if 0
+#if !HAVE_UNCTRL
 /*
  * unctrl:
  *	Print a readable version of a certain character

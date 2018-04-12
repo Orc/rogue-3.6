@@ -46,7 +46,7 @@ doctor()
 
 swander()
 {
-    daemon(rollwand, 0, BEFORE);
+    startdaemon(rollwand, 0, BEFORE);
 }
 
 /*

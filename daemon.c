@@ -64,7 +64,7 @@ register int (*func)();
  *	Start a daemon, takes a function.
  */
 
-daemon(func, arg, type)
+startdaemon(func, arg, type)
 int (*func)(), arg, type;
 {
     register struct delayed_action *dev;

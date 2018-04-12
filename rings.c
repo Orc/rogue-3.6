@@ -7,8 +7,6 @@
  * @(#)rings.c	3.17 (Berkeley) 6/15/81
  */
 
-char *malloc();
-
 ring_on()
 {
     register struct object *obj;

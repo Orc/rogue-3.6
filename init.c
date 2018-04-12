@@ -377,10 +377,9 @@ init_names()
 	    *cp++ = ' ';
 	}
 	*--cp = '\0';
-	s_names[i] = (char *) new(strlen(prbuf)+1);
+	s_names[i] = strdup(prbuf);
 	s_know[i] = FALSE;
 	s_guess[i] = NULL;
-	strcpy(s_names[i], prbuf);
 	if (i > 0)
 		s_magic[i].mi_prob += s_magic[i-1].mi_prob;
     }

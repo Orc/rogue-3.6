@@ -4,12 +4,8 @@
 
 #include <sys/termios.h>
 
-#if 0
-#include "config.h"
-
 #if !HAVE_TCGETATTR
 #define tcgetattr(fd,t)	ioctl(fd, TCGETS, t)
-#endif
 #endif
 
 

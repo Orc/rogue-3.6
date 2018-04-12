@@ -4,6 +4,11 @@
  * @(#)rogue.h	3.38 (Berkeley) 6/15/81
  */
 
+#include <stdlib.h>
+#include <string.h>
+
+#include "config.h"
+
 /*
  * Maximum number of different things
  */
