@@ -97,7 +97,7 @@ register FILE *savef;
     fstat(fileno(savef), &sbuf);
     fwrite("junk", 1, 5, savef);
     fseek(savef, 0L, 0);
-    encwrite(version, sbrk(0) - version, savef);
+    /*encwrite(version, sbrk(0) - version, savef);*/
     fclose(savef);
 }
 
