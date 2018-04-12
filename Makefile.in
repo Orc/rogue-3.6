@@ -13,6 +13,9 @@ rogue: $(OBJS)
 clean:
 	rm -f $(OBJS)
 
+spotless: clean
+	rm -f rogue @GENERATED_FILES@ @CONFIGURE_FILES@
+
 armor.o: armor.c mach_dep.h rogue.h config.h
 chase.o: chase.c mach_dep.h rogue.h config.h
 command.o: command.c mach_dep.h rogue.h config.h
