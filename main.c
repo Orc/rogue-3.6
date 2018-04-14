@@ -256,8 +256,12 @@ tstp()
     clearok(curscr, TRUE);
     touchwin(cw);
     draw(cw);
+#if HAVE_FLUSHINP
+    flushinp();
+#else
     raw();	/* flush input */
     noraw();
+#endif
 }
 # endif
 

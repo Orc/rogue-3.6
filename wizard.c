@@ -157,8 +157,12 @@ teleport()
     }
     count = 0;
     running = FALSE;
+#if HAVE_FLUSHINP
+    flushinp();
+#else
     raw();		/* flush typeahead */
     noraw();
+#endif
     return rm;
 }
 

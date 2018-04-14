@@ -272,8 +272,12 @@ register struct thing *mp;
 	mp->t_stats.s_hpt++;
     if (fight_flush)
     {
+#if HAVE_FLUSHINP
+	flushinp();
+#else
 	raw();	/* flush typeahead */
 	noraw();
+#endif
     }
     count = 0;
     status();

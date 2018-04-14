@@ -311,8 +311,12 @@ register coord *tc;
 	    else
 		msg("A small dart whizzes by your ear and vanishes.");
     }
+#if HAVE_FLUSHINP
+    flushinp();
+#else
     raw();	/* flush typeahead */
     noraw();
+#endif
     return(ch);
 }
 
