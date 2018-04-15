@@ -133,7 +133,7 @@ WINDOW *win;
     {
 	wmove(win, oy, ox);
 	draw(win);
-	switch (readchar())
+	switch (readchar(TRUE))
 	{
 	    case 't':
 	    case 'T':
@@ -181,7 +181,7 @@ WINDOW *win;
      * loop reading in the string, and put it in a temporary buffer
      */
     for (sp = buf;
-	(c = readchar()) != '\n' && c != '\r' && c != '\033' && c != '\007';
+	(c = readchar(FALSE)) != '\n' && c != '\r' && c != '\033' && c != '\007';
 	wclrtoeol(win), draw(win))
     {
 	if (c == -1)

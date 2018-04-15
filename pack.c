@@ -304,7 +304,7 @@ picky_inven()
     {
 	msg(terse ? "Item: " : "Which item do you wish to inventory: ");
 	mpos = 0;
-	if ((mch = readchar()) == ESCAPE)
+	if ((mch = readchar(TRUE)) == ESCAPE)
 	{
 	    msg("");
 	    return;
@@ -345,7 +345,7 @@ int type;
 	    if (terse)
 		addmsg(" what");
 	    msg("? (* for list): ");
-	    ch = readchar();
+	    ch = readchar(TRUE);
 	    mpos = 0;
 	    /*
 	     * Give the poor player a chance to abort the command

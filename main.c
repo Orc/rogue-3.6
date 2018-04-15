@@ -29,8 +29,6 @@ char **envp;
     register struct passwd *pw;
     register struct linked_list *item;
     register struct object *obj;
-    struct passwd *getpwuid();
-    char *getpass(), *crypt();
     int lowtime;
     long now;
 
@@ -120,6 +118,9 @@ char **envp;
     cw = newwin(LINES, COLS, 0, 0);
     mw = newwin(LINES, COLS, 0, 0);
     hw = newwin(LINES, COLS, 0, 0);
+#if HAVE_KEYPAD
+    keypad(cw, TRUE);
+#endif
     waswizard = wizard;
     new_level();			/* Draw current level */
     /*

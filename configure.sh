@@ -49,6 +49,7 @@ AC_LIBRARY crypt -lcrypt
 AC_CHECK_FUNCS wgetch
 AC_CHECK_FUNCS unctrl
 AC_CHECK_FUNCS flushinp
+AC_CHECK_FUNCS keypad
 
 AC_CHECK_FUNCS tcgetattr
 

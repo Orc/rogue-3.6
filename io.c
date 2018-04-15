@@ -107,18 +107,27 @@ step_ok(ch)
  *	getchar.
  */
 
-readchar()
+readchar(mapkey)
+bool mapkey;
 {
-    char c;
+    int c;
 
 #if HAVE_WGETCH
-    return wgetch(cw);
+    c = wgetch(cw);
+#ifdef KEY_UP
+    if ( mapkey) switch (c) {
+	when KEY_UP: c = 'k';
+	when KEY_DOWN: c = 'j';
+	when KEY_LEFT: c = 'h';
+	when KEY_RIGHT: c = 'l';
+    }
+#endif    
 #else
     fflush(stdout);
     while (read(0, &c, 1) < 0)
 	continue;
-    return c;
 #endif
+    return c;
 }
 
 #if !HAVE_UNCTRL
@@ -217,10 +226,10 @@ register char ch;
     register char c;
 
     if (ch == '\n')
-        while ((c = readchar()) != '\n' && c != '\r')
+        while ((c = readchar(0)) != '\n' && c != '\r')
 	    continue;
     else
-        while (readchar() != ch)
+        while (readchar(0) != ch)
 	    continue;
 }
 

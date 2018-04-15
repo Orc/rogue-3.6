@@ -16,10 +16,9 @@
 
 command()
 {
-    register char ch;
+    register int ch;
     register int ntimes = 1;			/* Number of player moves */
     static char countch, direction, newcount = FALSE;
-    char *unctrl();
 
     if (on(player, ISHASTE)) ntimes++;
     /*
@@ -50,7 +49,7 @@ command()
 	    else if (count) ch = countch;
 	    else
 	    {
-		ch = readchar();
+		ch = readchar(TRUE);
 		if (mpos != 0 && !running)	/* Erase message if its there */
 		    msg("");
 	    }
@@ -73,7 +72,7 @@ command()
 		while (isdigit(ch))
 		{
 		    count = count * 10 + (ch - '0');
-		    ch = readchar();
+		    ch = readchar(TRUE);
 		}
 		countch = ch;
 		/*
@@ -104,7 +103,7 @@ command()
 		    if (count && !newcount)
 			ch = direction;
 		    else
-			ch = readchar();
+			ch = readchar(TRUE);
 		    switch (ch)
 		    {
 			case 'h': case 'j': case 'k': case 'l':
@@ -316,7 +315,7 @@ quit()
 	mpos = 0;
     msg("Really quit?");
     draw(cw);
-    if (readchar() == 'y')
+    if (readchar(TRUE) == 'y')
     {
 	clear();
 	move(LINES-1, 0);
@@ -396,7 +395,7 @@ help()
     register int cnt;
 
     msg("Character you want help for (* for all): ");
-    helpch = readchar();
+    helpch = readchar(TRUE);
     mpos = 0;
     /*
      * If its not a *, print the right help string
@@ -453,7 +452,7 @@ identify()
     register char ch, *str;
 
     msg("What do you want identified? ");
-    ch = readchar();
+    ch = readchar(TRUE);
     mpos = 0;
     if (ch == ESCAPE)
     {

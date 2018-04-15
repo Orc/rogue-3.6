@@ -79,6 +79,7 @@ auto_save()
     register FILE *savef;
     register int i;
 
+    abort();
     for (i = 0; i < NSIG; i++)
 	signal(i, SIG_IGN);
     if (file_name[0] != '\0' && (savef = fopen(file_name, "w")) != NULL)

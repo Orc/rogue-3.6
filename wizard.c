@@ -76,17 +76,17 @@ create_obj()
     item = new_item(sizeof *obj);
     obj = (struct object *) ldata(item);
     msg("Type of item: ");
-    obj->o_type = readchar();
+    obj->o_type = readchar(FALSE);
     mpos = 0;
     msg("Which %c do you want? (0-f)", obj->o_type);
-    obj->o_which = (isdigit((ch = readchar())) ? ch - '0' : ch - 'a' + 10);
+    obj->o_which = (isdigit((ch = readchar(FALSE))) ? ch - '0' : ch - 'a' + 10);
     obj->o_group = 0;
     obj->o_count = 1;
     mpos = 0;
     if (obj->o_type == WEAPON || obj->o_type == ARMOR)
     {
 	msg("Blessing? (+,-,n)");
-	bless = readchar();
+	bless = readchar(FALSE);
 	mpos = 0;
 	if (bless == '-')
 	    obj->o_flags |= ISCURSED;
@@ -115,7 +115,7 @@ create_obj()
 	    case R_ADDHIT:
 	    case R_ADDDAM:
 		msg("Blessing? (+,-,n)");
-		bless = readchar();
+		bless = readchar(FALSE);
 		mpos = 0;
 		if (bless == '-')
 		    obj->o_flags |= ISCURSED;
