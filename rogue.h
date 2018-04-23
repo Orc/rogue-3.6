@@ -485,11 +485,8 @@ int  tty_speed;				/* tty ospeed: set in tty.c */
 struct linked_list *find_mons(), *find_obj(), *get_item(), *new_item();
 struct linked_list *new_thing(), *wake_monster();
 
-/*
-char *malloc(), *getenv(), *unctrl(), *tr_name(), *new(), *sprintf();
-*/
-char *vowelstr(), *inv_name() /*, *strcpy(), *strcat(), *sbrk(), *brk()*/;
-char /* *ctime(), */ *num(), *ring_num();
+char *vowelstr(), *inv_name();
+char *num(), *ring_num();
 
 struct room *roomin();
 

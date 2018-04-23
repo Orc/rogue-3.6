@@ -32,6 +32,8 @@ static char *rip[] = {
 "                  |       1980       |",
 "                 *|     *  *  *      | *",
 "         ________)/\\\\_//(\\/(/\\)/\\//\\/|_)_______",
+" ",
+" ",
     0
 };
 
@@ -49,29 +51,36 @@ register char monst;
     register struct tm *lt;
     time_t date;
     char buf[80];
-    struct tm *localtime();
+    char tombstone[24][80];
+    int y;
 
     time(&date);
     lt = localtime(&date);
+    move(LINES-1, 0);
     clear();
-    move(8, 0);
+    endwin();
+    memset(tombstone, 0, sizeof tombstone);
+
+    for (y=0; y < 8; y++)
+	tombstone[y][0] = ' ';
+    for (y=8; *dp; y++)
+	strcpy(tombstone[y], *dp++);
     while (*dp)
 	printw("%s\n", *dp++);
-    mvaddstr(14, 28-((strlen(whoami)+1)/2), whoami);
+    memcpy(tombstone[14] + 28-((strlen(whoami)+1)/2), whoami, strlen(whoami));
     purse -= purse/10;
     sprintf(buf, "%d Au", purse);
-    mvaddstr(15, 28-((strlen(buf)+1)/2), buf);
+    memcpy(tombstone[15] + 28-((strlen(buf)+1)/2), buf, strlen(buf));
     killer = killname(monst);
-    mvaddstr(17, 28-((strlen(killer)+1)/2), killer);
-    mvaddstr(16, 33, vowelstr(killer));
+    memcpy(tombstone[17] + 28-((strlen(killer)+1)/2), killer, strlen(killer));
+    memcpy(tombstone[16] + 33, vowelstr(killer), strlen(vowelstr(killer)));
     sprintf(prbuf, "%4d", 1900+lt->tm_year);
-    mvaddstr(18, 26, prbuf);
-    move(LINES-1, 0);
-    refresh();
-    draw(stdscr);
-    wait_for('\n');
-    score(purse, 0, monst);
-    endwin();
+    memcpy(tombstone[18] + 26, prbuf, strlen(prbuf));
+
+    for (y=0; tombstone[y][0]; y++)
+	puts(tombstone[y]);
+    
+    score(purse, -1, monst);
     exit(0);
 }
 

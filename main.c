@@ -100,6 +100,7 @@ char **envp;
 	printf("Hello %s, welcome to dungeon #%d", whoami, dnum);
     else
 	printf("Hello %s, just a moment while I dig the dungeon...", whoami);
+    putchar('\n');
     fflush(stdout);
     seed = dnum;
 
